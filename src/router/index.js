@@ -6,7 +6,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/music/home'
+            redirect: '/music/recommend'
         },
         /* 登录页面 */
         {
@@ -119,6 +119,34 @@ export default new Router({
                     name: 'recommend',
                     component(r) {
                         require.ensure([], () => r(require('@/views/music/recommend')));
+                    }
+                },
+                {
+                    path: '/music/singer',
+                    name: 'singer',
+                    component(r) {
+                        require.ensure([], () => r(require('@/views/music/singer')));
+                    }
+                },
+                {
+                    path: '/music/rank',
+                    name: 'rank',
+                    component(r) {
+                        require.ensure([], () => r(require('@/views/music/rank')));
+                    }
+                },
+                {
+                    path: '/music/search',
+                    name: 'search',
+                    component(r) {
+                        require.ensure([], () => r(require('@/views/music/search')));
+                    }
+                },
+                {
+                    path: '/music/user',
+                    name: 'user',
+                    component(r) {
+                        require.ensure([], () => r(require('@/views/music/user')));
                     }
                 }
             ]
