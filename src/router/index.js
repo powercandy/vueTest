@@ -119,7 +119,15 @@ export default new Router({
                     name: 'recommend',
                     component(r) {
                         require.ensure([], () => r(require('@/views/music/recommend')));
-                    }
+                    },
+                    children: [
+                        {
+                            path: ':id',
+                            component(r) {
+                                require.ensure([], () => r(require('@/views/music/disc')));
+                            }
+                        }
+                    ]
                 },
                 {
                     path: '/music/singer',

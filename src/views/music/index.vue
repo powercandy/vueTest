@@ -1,10 +1,10 @@
 <template>
     <div class="music-home">
         <mheader></mheader>
+        <tab></tab>
         <keep-alive>
             <router-view></router-view> 
         </keep-alive>
-        <tab></tab>
     </div>
 </template>
 
