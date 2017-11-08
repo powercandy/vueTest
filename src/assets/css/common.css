@@ -1,0 +1,63 @@
+/* 设置一些快捷样式 */
+.txt-center {
+    text-align: center;
+}
+
+.txt-left {
+    text-align: left;
+}
+
+.txt-right {
+    text-align: right;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.p-relative {
+    position: relative;
+}
+
+.p-absolute {
+    position: absolute;
+}
+
+.p-fixed {
+    position: fixed;
+}
+
+.font-14 {
+    font-size: .14rem;
+}
+.font-16 {
+    font-size: .16rem;
+}
+.font-18 {
+    font-size: .18rem;;
+}
+.font-20 {
+    font-size: .2rem;
+}
+.font-22 {
+    font-size: .22rem;
+}
+.font-24 {
+    font-size: .24rem;
+}
+.font-26 {
+    font-size: .26rem;
+}
+.font-28 {
+    font-size: .28rem;
+}
+.font-30 {
+    font-size: .3rem;
+}
+.font-36 {
+    font-size: .36rem;
+}

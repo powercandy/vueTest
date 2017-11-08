@@ -1,0 +1,33 @@
+/* 清空边距 */
+html, body,
+div, p,
+ul, li, dl, dt, dd, ol,
+h1, h2, h3, h4, h5, h6,
+form, label, input, textarea, button, option, fieldset,
+th, td, table,
+article, aside, header,section, footer, nav, menu {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    vertical-align: baseline;
+    font-weight: normal;
+    border: 0;
+}
+/* 清楚默认属性 */
+li {
+    list-style-type: none;
+}
+i,em {
+    font-style: normal;
+}
+a {
+    text-decoration: none;
+}
+h2,h3 {
+    font-weight: normal;
+}
+
+input {
+    outline: none;
+    -webkit-appearance: none;
+}
