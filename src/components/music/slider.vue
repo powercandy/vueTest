@@ -4,8 +4,7 @@
             <slot></slot> 
         </div>
         <div class="dots">
-            <span v-for="item, index in dots" :key="index">
-                
+            <span v-for="item, index in dots" :key="index" :class="{active : currentPageIndex === index}" class="dot">
             </span>
         </div>
     </div>
@@ -16,35 +15,130 @@
     import {addClass} from '@/assets/js/music/dom';
     export default {
         name: 'slider',
+        props: {
+            loop: {         // 是否循环轮播
+                type: Boolean,
+                default: true
+            },
+            autoPlay: {     // 是否开启自动播放时间
+                type: Boolean,
+                default: false
+            },
+            interval: {     // 自动播放间隔时间
+                type: Number,
+                default: 1000
+            },
+            showDot: {      // 是否显示滑动图标
+                type: Boolean,
+                default: true
+            },
+            click: {        // better-scroll默认阻止浏览器的原生click事件；默认值为false
+                type: Boolean,
+                default: true
+            }
+        },
         data() {
             return {
-                slider: Function,
-                dots: []
+                dots: [],
+                currentPageIndex: 0
             };
         },
         mounted() {
-            console.assert(this.$refs.slider, '获取不到slider节点');
-            this.setSliderWidth();
-            this.initDots();
-            this.initSlider();
+            /* 确保dom结构渲染完毕 */
+            setTimeout(() => {
+                this._setSliderWidth(); // 设置容器宽度
+                if (this.showDot) {     // 创建滑动记录图标
+                    this._initDots();
+                }
+                this._initSlider();     // 实例化slider
+                if (this.autoPlay) {    // 开启自动播放
+                    this._play();
+                }
+            }, 20);
+            /* 监听屏幕变化 */
+            window.addEventListener('resize', () => {
+                console.log('resize change');
+                if (!this.slider || !this.slider.enabled) {     // enabled 判断当前scroll是否处于启动状态
+                    return;
+                }
+                clearTimeout(this.resizeTimer);
+                this.resizeTimer = setTimeout(() => {
+                    if (this.slider.isInTransition) {           // 判断当前scroll是否处于滚动动画过程中
+                        this._OnScrollEnd();
+                    } else {
+                        if (this.autoPlay) {
+                            this._play();
+                        }
+                    }
+                    this.refresh();
+                }, 60);
+            });
+        },
+        /* keep-alive组件激活时调用 */
+        activated() {
+            console.log('activated');
+            if (!this.slider) return;
+            // console.log('this.slider excited');
+            this.slider.enable();      // 启用better-scroll
+            let pageIndex = this.slider.getCurrentPage().pageX;     // 获取当前轮播页的页码
+            if (pageIndex < this.dots.length) {
+                pageIndex = pageIndex % this.dots.length;
+            }
+            this.slider.goToPage(pageIndex, 0, 0);
+            if (this.loop) {
+                pageIndex -= 1;
+            }
+            this.currentPageIndex = pageIndex;
+            if (this.autoPlay) {
+                this._play();
+            }
+        },
+        /* keep-alive组件停用时调用 */
+        deactivated() {
+            console.log('deactivated');
+            this.slider.disable();
+            clearTimeout(this.timer);
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy');
+            this.slider.disable();      // 禁用better-scroll, DOM事件的回调函数不再响应
+            clearTimeout(this.timer);   // 关闭自动播放定时器
         },
         methods: {
+            /* 刷新slider */
+            refresh() {
+                console.log('refresh');
+                this._setSliderWidth(true);  // 设置容器宽度
+                this.slider.refresh();      // 重新渲染slider
+            },
             /* 初始化slider */
-            initSlider() {
-                // const slider = this.$refs.slider;
-                const config = {
-                    scrollX: true,
-                    scrollY: false,
-                    momentum: false,
-                    snap: true,
-                    snapLoop: true,
-                    snapThreshold: 0.3,
-                    snapSpeed: 400
-                };
-                this.slider = new BScroll(this.$refs.slider, config);
+            _initSlider() {
+                console.assert(this.$refs.slider, '获取不到slider节点');
+                this.slider = new BScroll(this.$refs.slider, {
+                    scrollX: true,      // true时开启横向滚动，默认值为false
+                    momentum: false,    // 关闭滚动动画，默认值为true
+                    snap: {
+                        loop: this.loop,
+                        threshold: 0.3,
+                        speed: 400
+                    },
+                    click: this.click
+                });
+                console.log('initSlider');
+                this.slider.on('scrollEnd', this._OnScrollEnd); // 滚动结束时触发
+                this.slider.on('touchEnd', () => {              // 鼠标/手指离开时触发
+                    if (this.autoPlay) {
+                        this._play();
+                    }
+                });
+                this.slider.on('beforeScrollStart', () => {     // 滚动开始之前触发
+                    if (this.autoPlay) {
+                        clearTimeout(this.timer);
+                    }
+                });
             },
             /* 设置容器宽度 */
-            setSliderWidth() {
+            _setSliderWidth(resize) {
                 console.assert(this.$refs.sliderGroup, '获取不到sliderGroup节点');
                 this.children = this.$refs.sliderGroup.children;
                 console.log(this.children);
@@ -55,12 +149,33 @@
                     this.children[i].style.width = sliderWidth + 'px';
                     width += sliderWidth;
                 }
-                width += 2 * sliderWidth;
+                if (this.loop && !resize) {
+                    width += 2 * sliderWidth;
+                }
                 this.$refs.sliderGroup.style.width = width + 'px';
             },
+            /* 滚动结束时的回调 */
+            _OnScrollEnd() {
+                let pageIndex = this.slider.getCurrentPage().pageX;  // 获取当前轮播页的页码
+                if (this.loop) {
+                    pageIndex -= 1;
+                }
+                this.currentPageIndex = pageIndex;
+                if (this.autoPlay) {
+                    this._play();
+                }
+            },
             /* 设置滑动图标 */
-            initDots() {
+            _initDots() {
                 this.dots = new Array(this.children.length);
+            },
+            /* 开启自动播放 */
+            _play() {
+                let pageIndex = this.slider.getCurrentPage().pageX + 1;
+                clearTimeout(this.timer);   // 关闭自动播放定时器
+                this.timer = setInterval(() => {
+                    this.slider.goToPage(pageIndex, 0, 400);
+                }, this.interval);
             }
         }
     };
@@ -81,6 +196,27 @@
                 img {
                     width: 100%;
                 }
+            }
+        }
+    }
+    .dots {
+        position: relative;
+        right: 0;
+        left: 0;
+        bottom: .12rem;
+        font-size: 0;
+        text-align: center;
+        .dot {
+            display: inline-block;
+            margin: 0 .04rem;
+            width: .08rem;
+            height: .08rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            &.active {
+                width: .2rem;
+                border-radius: .05rem;
+                background: rgba(255, 255, 255, 0.8);
             }
         }
     }

@@ -29,7 +29,7 @@
             <router-link tag="li" to="/insertMd">
                 <span>Insert MarkDown</span>
             </router-link>
-            <router-link tag="li" to="/music/home">
+            <router-link tag="li" to="/music/recommend">
                 <span>Music</span>
             </router-link>
             <router-link tag="li" to="/login">

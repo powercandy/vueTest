@@ -6,7 +6,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/music/recommend'
+            redirect: '/test'
         },
         /* 登录页面 */
         {
