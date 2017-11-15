@@ -15,32 +15,45 @@
     import {addClass} from '@/assets/js/music/dom';
     export default {
         name: 'slider',
+        /*
+        *   [[ Boolean ]]   [loop]          是否循环轮播
+        *   [[ Boolean ]]   [autoPlay]      是否开启自动播放时间
+        *   [[ Number ]]    [interval]      自动播放间隔时间
+        *   [[ Boolean ]]   [showDot]       是否显示滑动图标
+        *   [[ Boolean ]]   [click]         better-scroll默认阻止浏览器的原生click事件；默认值为false
+        */
         props: {
-            loop: {         // 是否循环轮播
+            loop: {
                 type: Boolean,
                 default: true
             },
-            autoPlay: {     // 是否开启自动播放时间
+            autoPlay: {
                 type: Boolean,
-                default: false
+                default: true
             },
-            interval: {     // 自动播放间隔时间
+            interval: {
                 type: Number,
-                default: 1000
+                default: 3000
             },
-            showDot: {      // 是否显示滑动图标
+            showDot: {
                 type: Boolean,
                 default: true
             },
-            click: {        // better-scroll默认阻止浏览器的原生click事件；默认值为false
+            click: {
                 type: Boolean,
                 default: true
             }
         },
+        /*
+        *   [[ Array ]] [dots]                  轮播图下标
+        *   [[ Number ]] [currentPageIndex]     轮播图播放的当前页数
+        *   [[ Array ]] [children]              图片列表的dom节点
+        */
         data() {
             return {
                 dots: [],
-                currentPageIndex: 0
+                currentPageIndex: 0,
+                children: []
             };
         },
         mounted() {
@@ -55,7 +68,7 @@
                     this._play();
                 }
             }, 20);
-            /* 监听屏幕变化 */
+                /* 监听屏幕变化 */
             window.addEventListener('resize', () => {
                 console.log('resize change');
                 if (!this.slider || !this.slider.enabled) {     // enabled 判断当前scroll是否处于启动状态
@@ -76,7 +89,7 @@
         },
         /* keep-alive组件激活时调用 */
         activated() {
-            console.log('activated');
+            // console.log('activated');
             if (!this.slider) return;
             // console.log('this.slider excited');
             this.slider.enable();      // 启用better-scroll
@@ -95,24 +108,24 @@
         },
         /* keep-alive组件停用时调用 */
         deactivated() {
-            console.log('deactivated');
+            // console.log('deactivated');
             this.slider.disable();
             clearTimeout(this.timer);
         },
         beforeDestroy() {
-            console.log('beforeDestroy');
+            // console.log('beforeDestroy');
             this.slider.disable();      // 禁用better-scroll, DOM事件的回调函数不再响应
             clearTimeout(this.timer);   // 关闭自动播放定时器
         },
         methods: {
             /* 刷新slider */
             refresh() {
-                console.log('refresh');
+                // console.log('refresh');
                 this._setSliderWidth(true);  // 设置容器宽度
-                this.slider.refresh();      // 重新渲染slider
             },
             /* 初始化slider */
             _initSlider() {
+                // console.log('initSlider');
                 console.assert(this.$refs.slider, '获取不到slider节点');
                 this.slider = new BScroll(this.$refs.slider, {
                     scrollX: true,      // true时开启横向滚动，默认值为false
@@ -124,7 +137,7 @@
                     },
                     click: this.click
                 });
-                console.log('initSlider');
+                // console.log(this.slider);
                 this.slider.on('scrollEnd', this._OnScrollEnd); // 滚动结束时触发
                 this.slider.on('touchEnd', () => {              // 鼠标/手指离开时触发
                     if (this.autoPlay) {
@@ -139,9 +152,8 @@
             },
             /* 设置容器宽度 */
             _setSliderWidth(resize) {
-                console.assert(this.$refs.sliderGroup, '获取不到sliderGroup节点');
+                // console.log('setWidth');
                 this.children = this.$refs.sliderGroup.children;
-                console.log(this.children);
                 let width = 0;
                 let sliderWidth = this.$refs.slider.clientWidth; // iphone 6下 375px
                 for (var i = 0; i < this.children.length; i++) {
@@ -177,11 +189,19 @@
                     this.slider.goToPage(pageIndex, 0, 400);
                 }, this.interval);
             }
+        },
+        watch: {
+            currentPageIndex: function(val, oldVal) {
+                // console.log(val);
+            }
         }
     };
 </script>
 
 <style lang="scss">
+    .slider {
+        position: relative;
+    }
     .slider-group {
         position: relative;
         width: 100%;
@@ -194,13 +214,15 @@
                 width: 100%;
                 overflow: hidden;
                 img {
+                    display: block;
                     width: 100%;
+                    border: 0;
                 }
             }
         }
     }
     .dots {
-        position: relative;
+        position: absolute;
         right: 0;
         left: 0;
         bottom: .12rem;

@@ -188,8 +188,14 @@ export default new Router({
                     component(r) {
                         require.ensure([], () => r(require('@/views/vue/apiTest')));
                     }
+                },
+                {
+                    path: '/vue/swipeout',
+                    name: 'swipeout',
+                    component(r) {
+                        require.ensure([], () => r(require('@/views/vue/swipeout')));
+                    }
                 }
-
             ]
         }
     ]
