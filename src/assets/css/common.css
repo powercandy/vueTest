@@ -30,7 +30,9 @@
 .p-fixed {
     position: fixed;
 }
-
+.font-12 {
+    font-size: .12rem;
+}
 .font-14 {
     font-size: .14rem;
 }

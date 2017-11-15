@@ -81,7 +81,7 @@
             /* 获取歌单推荐 */
             getDiscList() {
                 this.api.getDiscList().then(res => {
-                    if (res.data.code === 0) {
+                    if (res.data.code === ERR_OK) {
                         this.discList = res.data.data.list;
                     }
                 });
