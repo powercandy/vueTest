@@ -44,7 +44,7 @@ export default {
     },
     watch: {
         data() {
-            console.log(this.data);
+            // console.log(this.data);
         }
     }
 };
