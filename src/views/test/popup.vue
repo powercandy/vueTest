@@ -41,6 +41,7 @@
 <style type="text/css" lang="scss" scoped>
     .popup-test {
         padding: .15rem;
+        font-size: .12rem;
         .content {
             padding: .15rem;
             p {
