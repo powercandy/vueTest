@@ -1,6 +1,61 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 Vue.use(Router);
+
+const Hello = r => require.ensure([], () => r(require('@/views/Hello')));
+
+/* test测试页路由 */
+
+const Login = r => require.ensure([], () => r(require('@/views/test/login')));
+
+const Index = r => require.ensure([], () => r(require('@/views/test/index')));
+
+const Select = r => require.ensure([], () => r(require('@/views/test/select')));
+
+const cordovaCamera = r => require.ensure([], () => r(require('@/views/test/cordovaCamera')));
+
+const cordovaGps = r => require.ensure([], () => r(require('@/views/test/cordovaGps')));
+
+const popup = r => require.ensure([], () => r(require('@/views/test/popup')));
+
+const suggest = r => require.ensure([], () => r(require('@/views/test/suggestdemo')));
+
+const createLabel = r => require.ensure([], () => r(require('@/views/test/createLabel')));
+
+const hideMoney = r => require.ensure([], () => r(require('@/views/test/hideMoney')));
+
+const insertMd = r => require.ensure([], () => r(require('@/views/test/insertMd')));
+
+const tabbar = r => require.ensure([], () => r(require('@/views/test/tabbar')));
+
+/* Music路由 */
+
+const music = r => require.ensure([], () => r(require('@/views/music')));
+
+const recommend = r => require.ensure([], () => r(require('@/views/music/recommend')));
+
+const disc = r => require.ensure([], () => r(require('@/views/music/disc')));
+
+const singer = r => require.ensure([], () => r(require('@/views/music/singer')));
+
+const rank = r => require.ensure([], () => r(require('@/views/music/rank')));
+
+const search = r => require.ensure([], () => r(require('@/views/music/search')));
+
+const user = r => require.ensure([], () => r(require('@/views/music/user')));
+
+/* Vue-指令测试页路由 */
+
+const vueIndex = r => require.ensure([], () => r(require('@/views/vue/index')));
+
+const list = r => require.ensure([], () => r(require('@/views/vue/list')));
+
+const directive = r => require.ensure([], () => r(require('@/views/vue/directive')));
+
+const apiTest = r => require.ensure([], () => r(require('@/views/vue/apiTest')));
+
+const swipeout = r => require.ensure([], () => r(require('@/views/vue/swipeout')));
+
 export default new Router({
     // mode: 'history',
     routes: [
@@ -15,9 +70,7 @@ export default new Router({
             meta: {
                 title: 'login'
             },
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/login')));
-            }
+            component: Login
         },
         /* vue欢迎页面 */
         {
@@ -26,9 +79,7 @@ export default new Router({
             meta: {
                 title: 'Hello'
             },
-            component(r) {
-                require.ensure([], () => r(require('@/views/Hello')));
-            }
+            component: Hello
         },
         /* vue测试页 */
         {
@@ -37,125 +88,99 @@ export default new Router({
             meta: {
                 title: 'Test'
             },
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/index')));
-            },
+            component: Index,
             children: []
         },
         /* 如何获取选择框里的值 */
         {
             path: '/select',
             name: 'Select',
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/select')));
-            }
+            component: Select
         },
         /* 测试页1- cordova插件camera测试 */
         {
             path: '/cordovaCamera',
             name: 'cordovaCamera',
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/cordovaCamera')));
-            }
+            component: cordovaCamera
         },
         /* 测试页2 - cordova插件geolocation测试 */
         {
             path: '/cordovaGps',
             name: 'cordovaGps',
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/cordovaGps')));
-            }
+            component: cordovaGps
         },
         /* 测试页2 - 弹窗测试 */
         {
             path: '/popup',
             name: 'popup',
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/popup')));
-            }
+            component: popup
         },
         /* 测试页2 - 意见反馈测试 */
         {
             path: '/suggest',
             name: 'suggest',
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/suggestDemo')));
-            }
+            component: suggest
         },
         /* 测试页2 - 新建标签测试 */
         {
             path: '/createLabel',
             name: 'createLabel',
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/createLabel')));
-            }
+            component: createLabel
         },
         /* 测试页2 - 隐藏金额 */
         {
             path: '/hideMoney',
             name: 'hideMoney',
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/hideMoney')));
-            }
+            component: hideMoney
         },
         /* 测试页2 - 插入MarkDwon */
         {
             path: '/insertMd',
             name: 'insertMd',
-            component(r) {
-                require.ensure([], () => r(require('@/views/test/insertMd')));
-            }
+            component: insertMd
+        },
+         /* 测试页2 - tabbar */
+        {
+            path: '/tabbar',
+            name: 'tabbar',
+            component: tabbar
         },
         /* 测试页2 - Music */
         {
             path: '/music',
             name: 'Home',
-            component(r) {
-                require.ensure([], () => r(require('@/views/music')));
-            },
+            component: music,
             children: [
                 {
                     path: '/music/recommend',
                     name: 'recommend',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/music/recommend')));
-                    },
+                    component: recommend,
                     children: [
                         {
                             path: ':id',
-                            component(r) {
-                                require.ensure([], () => r(require('@/views/music/disc')));
-                            }
+                            component: disc
                         }
                     ]
                 },
                 {
                     path: '/music/singer',
                     name: 'singer',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/music/singer')));
-                    }
+                    component: singer
                 },
                 {
                     path: '/music/rank',
                     name: 'rank',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/music/rank')));
-                    }
+                    component: rank
                 },
                 {
                     path: '/music/search',
                     name: 'search',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/music/search')));
-                    }
+                    component: search
                 },
                 {
                     path: '/music/user',
                     name: 'user',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/music/user')));
-                    }
+                    component: user
                 }
             ]
         },
@@ -164,37 +189,27 @@ export default new Router({
             path: '/vue',
             name: 'vueDemo',
             redirect: '/vue/list',
-            component(r) {
-                require.ensure([], () => r(require('@/views/vue/index')));
-            },
+            component: vueIndex,
             children: [
                 {
                     path: '/vue/list',
                     name: 'one',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/vue/list')));
-                    }
+                    component: list
                 },
                 {
                     path: '/vue/directive',
                     name: 'directive',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/vue/directive')));
-                    }
+                    component: directive
                 },
                 {
                     path: '/vue/apiTest',
                     name: 'apiTest',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/vue/apiTest')));
-                    }
+                    component: apiTest
                 },
                 {
                     path: '/vue/swipeout',
                     name: 'swipeout',
-                    component(r) {
-                        require.ensure([], () => r(require('@/views/vue/swipeout')));
-                    }
+                    component: swipeout
                 }
             ]
         }

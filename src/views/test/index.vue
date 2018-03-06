@@ -2,45 +2,23 @@
     <div class="test-page">
         <v-header title="Test" prev="true" next="true"></v-header>
         <ul class="test-nav">
-            <router-link tag="li" to="/select">
-                <span>测试页-选择框</span>
-            </router-link>
-            <router-link tag="li" to="/cordovaCamera">
-                <span>cordova拍照测试</span>
-            </router-link>
-            <router-link tag="li" to="/cordovaGps">
-                <span>cordova定位测试</span>
-            </router-link>
-            <router-link tag="li" to="/popup">
-                <span>弹窗测试</span>
-            </router-link>
-            <router-link tag="li" to="/suggest">
-                <span>正则测试</span>
-            </router-link>
-            <router-link tag="li" to="/createLabel">
-                <span>新建标签测试</span>
-            </router-link>
-            <router-link tag="li" to="/suggest">
-                <span>上传图片</span>
-            </router-link>
-            <router-link tag="li" to="/hideMoney">
-                <span>隐藏金额</span>
-            </router-link>
-            <router-link tag="li" to="/insertMd">
-                <span>Insert MarkDown</span>
-            </router-link>
-            <router-link tag="li" to="/music/recommend">
-                <span>Music</span>
-            </router-link>
-            <router-link tag="li" to="/login">
-                <span>Login</span>
-            </router-link>
-            <router-link tag="li" to="/vue">
-                <span>Vue-demo</span>
+            <router-link tag="li" v-for="item, index in list" :to="item.path" :key="index">
+                <span>{{ item.name }}</span>
             </router-link>
         </ul>
     </div>
 </template>
+
+<script>
+    import listArray from '@/config/test';
+    export default {
+        data() {
+            return {
+                list: listArray
+            };
+        }
+    };
+</script>
 
 <style lang="scss">
     // 测试页-首页

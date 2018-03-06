@@ -7,7 +7,7 @@
         </form>
         <p class="upload-txt font-16">上传图片</p>
         <form action="" class="upload-img">
-            <div class="show-img" v-if="ImgList.length > 0" v-for="item, index in ImgList" :key="index">
+            <div class="show-img" v-if="ImgList.length > 0" v-for="(item, index) in ImgList" :key="index">
                 <img :src="item.imgUrl" alt="">
             </div>
             <div class="add" v-show="isShowAdd">
