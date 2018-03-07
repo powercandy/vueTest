@@ -38,7 +38,7 @@
     };
 </script>
 
-<style type="text/css" lang="scss" scoped>
+<style type="text/css" lang="less" scoped>
     .popup-test {
         padding: .15rem;
         font-size: .12rem;

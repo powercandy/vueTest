@@ -42,7 +42,7 @@
     };
 </script>
 
-<style  lang="scss" scoped>
+<style  lang="less" scoped>
 	.test-page1 {
 		background: #d3d7d4;
 		height: 6.67rem;

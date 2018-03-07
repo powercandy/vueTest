@@ -53,7 +53,7 @@
     };
 </script>
 
-<style type="text/css" lang="scss" scoped>
+<style type="text/css" lang="less" scoped>
     .money-page {
         .money-box {
             padding: .15rem;

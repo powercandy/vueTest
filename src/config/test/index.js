@@ -47,6 +47,10 @@ const listArray = [
     {
         path: '/tabbar',
         name: 'tabbar'
+    },
+    {
+        path: '/checkboxIview',
+        name: 'checkboxIview'
     }
 ];
 

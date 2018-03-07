@@ -1,8 +1,8 @@
 <template>
         <header class="common-header">
-            <i v-if="prev" class="pre" @click="goPrev" ><</i>
+            <i v-if="prev" class="pre" @click="goPrev" >&lt;</i>
             <span class="title font-18">{{title}}</span>
-            <i v-if="next" class="next" @click="goNext" >></i>
+            <i v-if="next" class="next" @click="goNext" >&gt;</i>
         </header>
 </template>
 <script>
@@ -27,7 +27,7 @@
         }
     };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 /* common header style */
     .common-header {
         height: .44rem;

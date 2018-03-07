@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     .entry-box {
         padding-top: .2rem;
         label {

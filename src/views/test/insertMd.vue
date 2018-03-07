@@ -14,7 +14,3 @@
         }
     };
 </script>
-
-<style type="text/css" lang="scss" scoped>
-    
-</style>

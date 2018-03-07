@@ -134,7 +134,7 @@
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     .upload-txt {
         margin-bottom: .1rem;
     }

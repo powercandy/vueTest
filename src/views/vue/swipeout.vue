@@ -99,7 +99,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="less">
 .demo-content {
     padding: 10px 10px;
 }

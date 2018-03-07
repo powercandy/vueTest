@@ -2,7 +2,7 @@
     <div class="test-page">
         <v-header title="Test" prev="true" next="true"></v-header>
         <ul class="test-nav">
-            <router-link tag="li" v-for="item, index in list" :to="item.path" :key="index">
+            <router-link tag="li" v-for="(item, index) in list" :to="item.path" :key="index">
                 <span>{{ item.name }}</span>
             </router-link>
         </ul>
@@ -20,7 +20,7 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="less">
     // 测试页-首页
     .test-page {
         background: #d3d7d4;

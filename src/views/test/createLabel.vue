@@ -1,7 +1,7 @@
 <template>
     <div class="create-label txt-center">
         <v-header title="新建标签" prev="true"></v-header>
-        <div class="newLabel" v-for="item, index in listArry" :key="index">
+        <div class="newLabel" v-for="(item, index) in listArry" :key="index">
             <div class="imgBox" v-if="item.type === 'img'">
                 <img src="" alt="">
                 <p>{{item.content}}</p>
@@ -47,7 +47,7 @@
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     .create-label {
         h2 {
             margin-bottom: .2rem;

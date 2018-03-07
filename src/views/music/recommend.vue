@@ -5,7 +5,7 @@
             <!-- slider 部分 start-->
                 <div v-if="carouselList.length">
                     <slider ref="slider1">
-                        <div v-for="item, index in carouselList" :key="index">
+                        <div v-for="(item, index) in carouselList" :key="index">
                             <a :href="item.linkUrl">
                                 <img :src="item.picUrl" @load="refresh" alt="轮播图">
                             </a>
@@ -17,7 +17,7 @@
                 <div class="recommend-list">
                     <h1 class="list-title txt-center font-14">热门歌单推荐</h1>
                     <ul>
-                        <li class="item" v-for="item in discList">
+                        <li class="item" v-for="(item, index) in discList" :key="index">
                             <div class="icon">
                                 <img :src="item.imgurl" alt="">
                             </div>
@@ -98,7 +98,7 @@
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     .recommend {
         position: fixed;
         width: 100%;

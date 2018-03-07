@@ -6,7 +6,7 @@
         <section>
             <form action="">
                 <select v-model="selecValue" @change="isOptions">
-                    <option v-for="item, index in list" :key="index">{{item.a}}</option>
+                    <option v-for="(item, index) in list" :key="index">{{item.a}}</option>
                 </select>
             </form>
             <p class="font-16">选择框的值为：<em>{{selecValue}}</em></p>
@@ -57,7 +57,7 @@
     };
 </script>
 
-<style lang="scss" scoped="">
+<style lang="less" scoped="">
     .select-page{
         height: 6.67rem;
         background: #d3d7d4;

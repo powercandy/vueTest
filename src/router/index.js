@@ -28,6 +28,8 @@ const insertMd = r => require.ensure([], () => r(require('@/views/test/insertMd'
 
 const tabbar = r => require.ensure([], () => r(require('@/views/test/tabbar')));
 
+const checkboxIview = r => require.ensure([], () => r(require('@/views/test/checkboxIview')));
+
 /* Music路由 */
 
 const music = r => require.ensure([], () => r(require('@/views/music')));
@@ -144,6 +146,12 @@ export default new Router({
             path: '/tabbar',
             name: 'tabbar',
             component: tabbar
+        },
+         /* 测试页2 - checkboxIview */
+        {
+            path: '/checkboxIview',
+            name: 'checkboxIview',
+            component: checkboxIview
         },
         /* 测试页2 - Music */
         {

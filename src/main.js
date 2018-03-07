@@ -4,6 +4,15 @@
 
 import Vue from 'vue';
 import router from './router';
+
+// 引入iview
+// import iView from 'iview';
+// import 'iview/dist/styles/iview.css';
+// Vue.use(iView);
+
+/* 按需引入iview */
+import 'iview/dist/styles/iview.css';
+
 import valid from '@/assets/js/valid';
 Vue.use(valid);
 

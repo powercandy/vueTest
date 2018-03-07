@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
     button {
         margin-top: .1rem;
         margin-left: .1rem;
