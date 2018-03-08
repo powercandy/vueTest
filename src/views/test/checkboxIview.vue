@@ -7,14 +7,24 @@
          <div>
              <button @click="findId">点击</button>
          </div>
+         <div>
+            <form-ie>
+                <form-item v-for="(i,index) in propList" :key="index" :prop="i.prop">
+                    <select-ie v-model="i.model" @on-change="getIndex" element-id="index">
+                        <option-ie :value="item.label" v-for="(item, n) in list" :key="n"></option-ie>
+                    </select-ie>
+                </form-item>
+            </form-ie> 
+         </div>
     </div>
 </template>
 
 <script>
-import { Checkbox, CheckboxGroup } from 'iview';
+import { Checkbox, CheckboxGroup, Select, Option, Form, FormItem } from 'iview';
 export default {
     data() {
         return {
+            str: '星期一',
             arr: ['星期一'],
             list: [
                 {
@@ -45,12 +55,17 @@ export default {
                     label: '星期日',
                     id: '7'
                 }
-            ]
+            ],
+            propList: [{prop: 'people', model: '星期一'}, {prop: 'student', model: '星期一'}]
         };
     },
     components: {
         Checkbox,
-        CheckboxGroup
+        CheckboxGroup,
+        selectIe: Select,
+        optionIe: Option,
+        formIe: Form,
+        formItem: FormItem
     },
     methods: {
         getId(e) {
@@ -67,6 +82,10 @@ export default {
                 });
             });
             console.log(arrId);
+        },
+        getIndex(val, index) {
+            console.log(val);
+            this.c();
         }
     }
 };
@@ -74,7 +93,7 @@ export default {
 
 <style lang="less" scoped>
 .checkbox-page {
-    font-size: .40rem;
+    font-size: .2rem;
 }
 .checkbox-group {
     font-size: .8rem;
