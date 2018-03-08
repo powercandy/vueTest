@@ -8,19 +8,16 @@
              <button @click="findId">点击</button>
          </div>
          <div>
-            <form-ie>
-                <form-item v-for="(i,index) in propList" :key="index" :prop="i.prop">
-                    <select-ie v-model="i.model" @on-change="getIndex" element-id="index">
-                        <option-ie :value="item.label" v-for="(item, n) in list" :key="n"></option-ie>
-                    </select-ie>
-                </form-item>
-            </form-ie> 
+            <form-ie class="flow-flex" v-for="(v, x) in arrList" :key="x">
+                <formData v-for="(i,index) in v.value" :data="i" :key="i.value" @change="getIndex" :dataIndex="v.id"></formData>
+            </form-ie>
          </div>
     </div>
 </template>
 
 <script>
 import { Checkbox, CheckboxGroup, Select, Option, Form, FormItem } from 'iview';
+import formData from '@/components/formItem.vue';
 export default {
     data() {
         return {
@@ -56,7 +53,75 @@ export default {
                     id: '7'
                 }
             ],
-            propList: [{prop: 'people', model: '星期一'}, {prop: 'student', model: '星期一'}]
+            propList: [{prop: 'people', model: '星期一'}, {prop: 'student', model: '星期一'}],
+            arrList: [
+                {
+                    id: 'one_1',
+                    value: [
+                        {
+                            props: 'people',
+                            data: [
+                                {
+                                    value: 'one',
+                                    id: '1'
+                                },
+                                {
+                                    value: 'two',
+                                    id: '2'
+                                }
+                            ],
+                            value: 'one'
+                        },
+                        {
+                            props: 'role',
+                            data: [
+                                {
+                                    value: 'abc',
+                                    id: '1'
+                                },
+                                {
+                                    value: 'def',
+                                    id: '2'
+                                }
+                            ],
+                            value: 'abc'
+                        }
+                    ]
+                },
+                {
+                    id: 'one_2',
+                    value: [
+                        {
+                            props: 'people',
+                            data: [
+                                {
+                                    value: 'one',
+                                    id: '1'
+                                },
+                                {
+                                    value: 'two',
+                                    id: '2'
+                                }
+                            ],
+                            value: 'one'
+                        },
+                        {
+                            props: 'role',
+                            data: [
+                                {
+                                    value: 'abc',
+                                    id: '1'
+                                },
+                                {
+                                    value: 'def',
+                                    id: '2'
+                                }
+                            ],
+                            value: 'abc'
+                        }
+                    ]
+                }
+            ]
         };
     },
     components: {
@@ -65,12 +130,13 @@ export default {
         selectIe: Select,
         optionIe: Option,
         formIe: Form,
-        formItem: FormItem
+        formItem: FormItem,
+        formData
     },
     methods: {
         getId(e) {
             // console.log(e);
-            console.log(this.arr);
+            // console.log(this.arr);
         },
         findId() {
             let arrId = [];
@@ -83,9 +149,10 @@ export default {
             });
             console.log(arrId);
         },
-        getIndex(val, index) {
-            console.log(val);
-            this.c();
+        getIndex(index) {
+            console.log(index);
+            // console.log(this);
+            // this.c();
         }
     }
 };
@@ -99,5 +166,7 @@ export default {
     font-size: .8rem;
     padding: 5%;
 }
+.flow-flex {
+    display: flex;
+}
 </style>
-
