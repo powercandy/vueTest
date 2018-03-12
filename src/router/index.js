@@ -18,17 +18,13 @@ const cordovaGps = r => require.ensure([], () => r(require('@/views/test/cordova
 
 const popup = r => require.ensure([], () => r(require('@/views/test/popup')));
 
-const suggest = r => require.ensure([], () => r(require('@/views/test/suggestdemo')));
+const uploadPic = r => require.ensure([], () => r(require('@/views/test/uploadPic')));
 
 const createLabel = r => require.ensure([], () => r(require('@/views/test/createLabel')));
 
 const hideMoney = r => require.ensure([], () => r(require('@/views/test/hideMoney')));
 
-const insertMd = r => require.ensure([], () => r(require('@/views/test/insertMd')));
-
 const tabbar = r => require.ensure([], () => r(require('@/views/test/tabbar')));
-
-const checkboxIview = r => require.ensure([], () => r(require('@/views/test/checkboxIview')));
 
 /* Music路由 */
 
@@ -57,6 +53,16 @@ const directive = r => require.ensure([], () => r(require('@/views/vue/directive
 const apiTest = r => require.ensure([], () => r(require('@/views/vue/apiTest')));
 
 const swipeout = r => require.ensure([], () => r(require('@/views/vue/swipeout')));
+
+/* iview 组件测试demo */
+
+const iview = r => require.ensure([], () => r(require('@/views/iview/index')));
+
+const iviewHome = r => require.ensure([], () => r(require('@/views/iview/home')));
+
+const iviewCheckBox = r => require.ensure([], () => r(require('@/views/iview/checkbox')));
+
+const iviewSelect = r => require.ensure([], () => r(require('@/views/iview/select')));
 
 export default new Router({
     // mode: 'history',
@@ -119,9 +125,9 @@ export default new Router({
         },
         /* 测试页2 - 意见反馈测试 */
         {
-            path: '/suggest',
-            name: 'suggest',
-            component: suggest
+            path: '/uploadPic',
+            name: 'uploadPic',
+            component: uploadPic
         },
         /* 测试页2 - 新建标签测试 */
         {
@@ -135,23 +141,11 @@ export default new Router({
             name: 'hideMoney',
             component: hideMoney
         },
-        /* 测试页2 - 插入MarkDwon */
-        {
-            path: '/insertMd',
-            name: 'insertMd',
-            component: insertMd
-        },
          /* 测试页2 - tabbar */
         {
             path: '/tabbar',
             name: 'tabbar',
             component: tabbar
-        },
-         /* 测试页2 - checkboxIview */
-        {
-            path: '/checkboxIview',
-            name: 'checkboxIview',
-            component: checkboxIview
         },
         /* 测试页2 - Music */
         {
@@ -218,6 +212,32 @@ export default new Router({
                     path: '/vue/swipeout',
                     name: 'swipeout',
                     component: swipeout
+                }
+            ]
+        },
+        /* iview组件demo页面 */
+        {
+            path: '/iview',
+            name: 'iview',
+            component: iview,
+            redirect: {
+                name: 'iview-home'
+            },
+            children: [
+                {
+                    path: '/',
+                    name: 'iview-home',
+                    component: iviewHome
+                },
+                {
+                    path: '/iview/checkbox',
+                    name: 'iview-checkbox',
+                    component: iviewCheckBox
+                },
+                {
+                    path: '/iview/select',
+                    name: 'iview-select',
+                    component: iviewSelect
                 }
             ]
         }

@@ -1,5 +1,5 @@
 
-const listArray = [
+export const listArray = [
     {
         path: '/select',
         name: '测试页-选择框'
@@ -14,11 +14,11 @@ const listArray = [
     },
     {
         path: '/popup',
-        name: '弹窗测试'
+        name: '弹窗背景固定'
     },
     {
-        path: '/suggest',
-        name: '正则测试'
+        path: '/uploadPic',
+        name: 'input + canvas 图片上传'
     },
     {
         path: '/createLabel',
@@ -27,10 +27,6 @@ const listArray = [
     {
         path: '/hideMoney',
         name: '隐藏金额'
-    },
-    {
-        path: '/insertMd',
-        name: 'Insert MarkDown'
     },
     {
         path: '/music/recommend',
@@ -49,9 +45,7 @@ const listArray = [
         name: 'tabbar'
     },
     {
-        path: '/checkboxIview',
-        name: 'checkboxIview'
+        path: '/iview',
+        name: 'iview'
     }
 ];
-
-export default listArray;

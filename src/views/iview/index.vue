@@ -1,13 +1,14 @@
 <template>
-    <div class="">
-        <page-list :listArray="listArray"></page-list>
+    <div class="iview-page">
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
     import pageList from '@/components/common/pageList';
-    import { listArray } from '@/config/list/home.js';
+    import { listArray } from '@/config/list/iviewList.js';
     export default {
+        name: 'iview',
         components: {
             pageList
         },

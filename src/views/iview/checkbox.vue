@@ -13,6 +13,7 @@
 <script>
 import { Checkbox, CheckboxGroup } from 'iview';
 export default {
+    name: 'iview-checkbox',
     data() {
         return {
             str: '星期一',
