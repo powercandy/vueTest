@@ -1,11 +1,11 @@
 <template>
-    <div class="iview-page">
+    <div class="cordova-page">
         <router-view></router-view>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'iview'
+        name: 'cordova'
     };
 </script>

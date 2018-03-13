@@ -4,27 +4,37 @@ Vue.use(Router);
 
 const Hello = r => require.ensure([], () => r(require('@/views/Hello')));
 
+const listView = r => require.ensure([], () => r(require('@/views/list')));
+
 /* test测试页路由 */
 
-const Login = r => require.ensure([], () => r(require('@/views/test/login')));
+const testLogin = r => require.ensure([], () => r(require('@/views/test/login')));
 
-const Index = r => require.ensure([], () => r(require('@/views/test/index')));
+const testIndex = r => require.ensure([], () => r(require('@/views/test/index')));
 
-const Select = r => require.ensure([], () => r(require('@/views/test/select')));
+const testList = r => require.ensure([], () => r(require('@/views/test/list')));
 
-const cordovaCamera = r => require.ensure([], () => r(require('@/views/test/cordovaCamera')));
+const testSelect = r => require.ensure([], () => r(require('@/views/test/select')));
 
-const cordovaGps = r => require.ensure([], () => r(require('@/views/test/cordovaGps')));
+const testPopup = r => require.ensure([], () => r(require('@/views/test/popup')));
 
-const popup = r => require.ensure([], () => r(require('@/views/test/popup')));
+const testUploadPic = r => require.ensure([], () => r(require('@/views/test/uploadPic')));
 
-const uploadPic = r => require.ensure([], () => r(require('@/views/test/uploadPic')));
+const testCreateLabel = r => require.ensure([], () => r(require('@/views/test/createLabel')));
 
-const createLabel = r => require.ensure([], () => r(require('@/views/test/createLabel')));
+const testHideMoney = r => require.ensure([], () => r(require('@/views/test/hideMoney')));
 
-const hideMoney = r => require.ensure([], () => r(require('@/views/test/hideMoney')));
+const testTabbar = r => require.ensure([], () => r(require('@/views/test/tabbar')));
 
-const tabbar = r => require.ensure([], () => r(require('@/views/test/tabbar')));
+/* Cordova路由 */
+
+const cordova = r => require.ensure([], () => r(require('@/views/cordova/index')));
+
+const cordovaList = r => require.ensure([], () => r(require('@/views/cordova/list')));
+
+const cordovaCamera = r => require.ensure([], () => r(require('@/views/cordova/camera')));
+
+const cordovaGps = r => require.ensure([], () => r(require('@/views/cordova/gps')));
 
 /* Music路由 */
 
@@ -46,19 +56,17 @@ const user = r => require.ensure([], () => r(require('@/views/music/user')));
 
 const vueIndex = r => require.ensure([], () => r(require('@/views/vue/index')));
 
-const list = r => require.ensure([], () => r(require('@/views/vue/list')));
+const vueList = r => require.ensure([], () => r(require('@/views/vue/list')));
 
-const directive = r => require.ensure([], () => r(require('@/views/vue/directive')));
+const vueDirective = r => require.ensure([], () => r(require('@/views/vue/directive')));
 
-const apiTest = r => require.ensure([], () => r(require('@/views/vue/apiTest')));
-
-const swipeout = r => require.ensure([], () => r(require('@/views/vue/swipeout')));
+const vueApiTest = r => require.ensure([], () => r(require('@/views/vue/apiTest')));
 
 /* iview 组件测试demo */
 
 const iview = r => require.ensure([], () => r(require('@/views/iview/index')));
 
-const iviewHome = r => require.ensure([], () => r(require('@/views/iview/home')));
+const iviewList = r => require.ensure([], () => r(require('@/views/iview/list')));
 
 const iviewCheckBox = r => require.ensure([], () => r(require('@/views/iview/checkbox')));
 
@@ -69,83 +77,64 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/test'
+            component: listView
         },
-        /* 登录页面 */
         {
-            path: '/login',
-            name: 'login',
-            meta: {
-                title: 'login'
-            },
-            component: Login
+            path: '*',
+            redirect: {
+                path: '/'
+            }
+        },
+        {
+            path: '/test',
+            component: testIndex,
+            children: [
+                {
+                    path: '',
+                    component: testList
+                },
+                {
+                    path: '/test/login',
+                    name: 'test-login',
+                    component: testLogin
+                },
+                {
+                    path: '/test/createLable',
+                    name: 'test-createLable',
+                    component: testCreateLabel
+                },
+                {
+                    path: '/test/hideMoney',
+                    name: 'test-hideMoney',
+                    component: testHideMoney
+                },
+                {
+                    path: '/test/popup',
+                    name: 'test-popup',
+                    component: testPopup
+                },
+                {
+                    path: '/test/select',
+                    name: 'test-select',
+                    component: testSelect
+                },
+                {
+                    path: '/test/tabbar',
+                    name: 'test-tabbar',
+                    component: testTabbar
+                },
+                {
+                    path: '/test/uploadPic',
+                    name: 'test-uploadPic',
+                    component: testUploadPic
+                }
+            ]
         },
         /* vue欢迎页面 */
         {
             path: '/hello',
             name: 'Hello',
-            meta: {
-                title: 'Hello'
-            },
             component: Hello
-        },
-        /* vue测试页 */
-        {
-            path: '/test',
-            name: 'Test',
-            meta: {
-                title: 'Test'
-            },
-            component: Index,
-            children: []
-        },
-        /* 如何获取选择框里的值 */
-        {
-            path: '/select',
-            name: 'Select',
-            component: Select
-        },
-        /* 测试页1- cordova插件camera测试 */
-        {
-            path: '/cordovaCamera',
-            name: 'cordovaCamera',
-            component: cordovaCamera
-        },
-        /* 测试页2 - cordova插件geolocation测试 */
-        {
-            path: '/cordovaGps',
-            name: 'cordovaGps',
-            component: cordovaGps
-        },
-        /* 测试页2 - 弹窗测试 */
-        {
-            path: '/popup',
-            name: 'popup',
-            component: popup
-        },
-        /* 测试页2 - 意见反馈测试 */
-        {
-            path: '/uploadPic',
-            name: 'uploadPic',
-            component: uploadPic
-        },
-        /* 测试页2 - 新建标签测试 */
-        {
-            path: '/createLabel',
-            name: 'createLabel',
-            component: createLabel
-        },
-        /* 测试页2 - 隐藏金额 */
-        {
-            path: '/hideMoney',
-            name: 'hideMoney',
-            component: hideMoney
-        },
-         /* 测试页2 - tabbar */
-        {
-            path: '/tabbar',
-            name: 'tabbar',
-            component: tabbar
         },
         /* 测试页2 - Music */
         {
@@ -189,45 +178,31 @@ export default new Router({
         /* 测试页2 - Vue-demo */
         {
             path: '/vue',
-            name: 'vueDemo',
-            redirect: '/vue/list',
             component: vueIndex,
             children: [
                 {
-                    path: '/vue/list',
-                    name: 'one',
-                    component: list
+                    path: '/',
+                    component: vueList
                 },
                 {
                     path: '/vue/directive',
-                    name: 'directive',
-                    component: directive
+                    component: vueDirective
                 },
                 {
                     path: '/vue/apiTest',
-                    name: 'apiTest',
-                    component: apiTest
-                },
-                {
-                    path: '/vue/swipeout',
-                    name: 'swipeout',
-                    component: swipeout
+                    component: vueApiTest
                 }
             ]
         },
         /* iview组件demo页面 */
         {
             path: '/iview',
-            name: 'iview',
             component: iview,
-            redirect: {
-                name: 'iview-home'
-            },
             children: [
                 {
                     path: '/',
-                    name: 'iview-home',
-                    component: iviewHome
+                    name: 'iview-list',
+                    component: iviewList
                 },
                 {
                     path: '/iview/checkbox',
@@ -238,6 +213,29 @@ export default new Router({
                     path: '/iview/select',
                     name: 'iview-select',
                     component: iviewSelect
+                }
+            ]
+        },
+        {
+            path: '/cordova',
+            component: cordova,
+            children: [
+                {
+                    path: '/',
+                    component: cordovaList,
+                    name: 'cordova-list'
+                },
+                /* 测试页1- cordova插件camera测试 */
+                {
+                    path: '/cordova/camera',
+                    name: 'cordovaCamera',
+                    component: cordovaCamera
+                },
+                /* 测试页2 - cordova插件geolocation测试 */
+                {
+                    path: '/cordova/gps',
+                    name: 'cordovaGps',
+                    component: cordovaGps
                 }
             ]
         }

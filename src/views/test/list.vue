@@ -1,12 +1,12 @@
 <template>
-  <div class="vue-page">
-      <page-list :listArray="listArray" :title="title"></page-list>
-  </div>
+    <div class="">
+        <page-list :listArray="listArray" :title="title"></page-list>
+    </div>
 </template>
 
-<script type="text/javascript">
+<script>
     import pageList from '@/components/common/pageList';
-    import { listArray } from '@/config/list/vueList';
+    import { listArray } from '@/config/list/testList.js';
     export default {
         components: {
             pageList
@@ -14,7 +14,7 @@
         data() {
             return {
                 listArray: listArray,
-                title: 'Vue-list'
+                title: 'Test-list'
             };
         }
     };

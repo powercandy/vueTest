@@ -1,6 +1,6 @@
 <template>
     <div class="test-page">
-        <v-header title="Test" prev="true" next="true"></v-header>
+        <v-header :title="title" prev="true" next="true"></v-header>
         <ul class="test-nav">
             <router-link tag="li" v-for="(item, index) in listArray" :to="item.path" :key="index">
                 <span>{{ item.name }}</span>
@@ -15,6 +15,10 @@
             listArray: {
                 type: Array,
                 default: ''
+            },
+            title: {
+                type: String,
+                default: 'Home-list'
             }
         },
         data() {

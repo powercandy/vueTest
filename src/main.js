@@ -23,6 +23,11 @@ Vue.prototype.api = api;
 /* 注册header为全局组件 */
 import vHeader from '@/components/common/header.vue';
 Vue.component('v-header', vHeader);
+
+/* 注册页面List为全局组件 */
+import pageList from '@/components/common/pageList';
+Vue.component('v-list', pageList);
+
 import App from './App';
 // Vue.use(require('vue-wechat-title'));
 
@@ -47,4 +52,3 @@ new Vue({
 		message: 'hello'
 	}
 });
-
