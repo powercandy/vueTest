@@ -11,7 +11,7 @@ import router from './router';
 // Vue.use(iView);
 
 /* 按需引入iview */
-import 'iview/dist/styles/iview.css';
+// import 'iview/dist/styles/iview.css';
 
 import valid from '@/assets/js/valid';
 Vue.use(valid);
