@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    require('@/assets/js/flexible.js');
+    // require('@/assets/js/flexible.js');
     require('@/assets/css/reset.css');
     require('@/assets/css/public.css');
     require('@/assets/css/common.css');

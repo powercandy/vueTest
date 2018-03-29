@@ -5,7 +5,8 @@
 </template>
 
 <script>
-    export default {
-        name: 'iview'
-    };
+import 'iview/dist/styles/iview.css';
+export default {
+    name: 'iview'
+};
 </script>

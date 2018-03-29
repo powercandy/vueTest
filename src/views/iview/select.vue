@@ -2,20 +2,20 @@
     <div class="select-page">
          <v-header title="selectIview" prev="true"></v-header>
          <div class="wrapper">
-             <!-- <select-ie @on-change="changeSelect" v-model="item">
+             <select-ie @on-change="changeSelect" v-model="item">
                 <option-ie value="清华"></option-ie>
                 <option-ie value="哈弗"></option-ie>
              </select-ie>
              <select-ie v-model="seItem">
                 <option-ie v-for="(i, index) in seList.data" :key="index" :value="i"></option-ie>
-             </select-ie> -->
-            <select v-model="item" @change="changeSelect">
+             </select-ie>
+            <!-- <select v-model="item" @change="changeSelect">
                 <option value="清华">清华</option>
                 <option value="哈弗">哈弗</option>
             </select>
             <select v-model="seItem">
                 <option v-for="(i, index) in seList.data" :key="index" :value="i">{{ i }}</option>
-            </select>
+            </select> -->
          </div>
         <div class="component-select">
             <div class="defalut-value" @click.stop="isShowList = !isShowList">

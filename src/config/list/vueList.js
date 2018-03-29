@@ -7,5 +7,9 @@ export const listArray = [
     {
         path: '/vue/directive',
         name: 'vue-directive'
+    },
+    {
+        path: '/vue/smTest',
+        name: 'vue-smTest'
     }
 ];

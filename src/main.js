@@ -5,6 +5,13 @@
 import Vue from 'vue';
 import router from './router';
 
+window.Vue = Vue;
+
+// 关闭提示
+Vue.config.productionTip = false;
+
+require('@/assets/js/flexible.js');
+
 // 引入iview
 // import iView from 'iview';
 // import 'iview/dist/styles/iview.css';

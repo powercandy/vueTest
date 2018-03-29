@@ -62,6 +62,8 @@ const vueDirective = r => require.ensure([], () => r(require('@/views/vue/direct
 
 const vueApiTest = r => require.ensure([], () => r(require('@/views/vue/apiTest')));
 
+const vueSmTest = r => require.ensure([], () => r(require('@/views/vue/smTest')));
+
 /* iview 组件测试demo */
 
 const iview = r => require.ensure([], () => r(require('@/views/iview/index')));
@@ -73,7 +75,7 @@ const iviewCheckBox = r => require.ensure([], () => r(require('@/views/iview/che
 const iviewSelect = r => require.ensure([], () => r(require('@/views/iview/select')));
 
 export default new Router({
-    // mode: 'history',
+    mode: 'history',
     routes: [
         {
             path: '/',
@@ -191,6 +193,10 @@ export default new Router({
                 {
                     path: '/vue/apiTest',
                     component: vueApiTest
+                },
+                {
+                    path: '/vue/smTest',
+                    component: vueSmTest
                 }
             ]
         },
