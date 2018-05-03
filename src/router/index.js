@@ -74,6 +74,8 @@ const iviewCheckBox = r => require.ensure([], () => r(require('@/views/iview/che
 
 const iviewSelect = r => require.ensure([], () => r(require('@/views/iview/select')));
 
+const iviewUpload = r => require.ensure([], () => r(require('@/views/iview/upload')));
+
 export default new Router({
     mode: 'history',
     routes: [
@@ -219,6 +221,11 @@ export default new Router({
                     path: '/iview/select',
                     name: 'iview-select',
                     component: iviewSelect
+                },
+                {
+                    path: '/iview/upload',
+                    name: 'iview-upload',
+                    component: iviewUpload
                 }
             ]
         },
